@@ -1,19 +1,20 @@
 import { useNavigate } from '@tanstack/react-router';
 import React from 'react';
+import { useVerifyPassword } from '../../hooks/api-hooks';
 
 export function TimeMachine() {
   const [password, setPassword] = React.useState('');
   const navigate = useNavigate({ from: '/time-machine' });
+  const { mutateAsync } = useVerifyPassword();
 
-  const handleSubmit = React.useCallback(() => {
-    if (password.toLowerCase() !== import.meta.env.VITE_ROUTE_PASSWORD.toLowerCase()) {
-      alert('Wrong password');
-      return;
-    }
+  const handleSubmit = React.useCallback(async () => {
+    const data = await mutateAsync({ password });
+    if (!data) return alert('Wrong Password');
+
     navigate({
       to: '/location',
     });
-  }, [navigate, password]);
+  }, [mutateAsync, navigate, password]);
 
   return (
     <div className='p-1'>
