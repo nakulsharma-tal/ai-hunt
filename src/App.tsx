@@ -1,11 +1,25 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { Outlet, Route, Router, RouterProvider, redirect, rootRouteWithContext } from '@tanstack/react-router';
+import {
+  Outlet,
+  Route,
+  Router,
+  RouterProvider,
+  redirect,
+  rootRouteWithContext,
+  useNavigate,
+} from '@tanstack/react-router';
 import { FutureLocation } from './containers/future';
 import { TimeMachine } from './containers/time-machine';
 import { Crossword } from './containers/future/crossword';
 
+function Root() {
+  const navigate = useNavigate({ from: '/' });
+  navigate({ to: '/time-machine' });
+  return <Outlet />;
+}
+
 const rootRoute = rootRouteWithContext<{ queryClient: QueryClient }>()({
-  component: () => <Outlet />,
+  component: Root,
 });
 
 const timeMachineRoute = new Route({
