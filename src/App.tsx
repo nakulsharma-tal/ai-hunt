@@ -1,7 +1,8 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Outlet, Route, Router, RouterProvider, redirect, rootRouteWithContext } from '@tanstack/react-router';
-import { FutureLocation } from './containers/location';
+import { FutureLocation } from './containers/future';
 import { TimeMachine } from './containers/time-machine';
+import { Crossword } from './containers/future/crossword';
 
 const rootRoute = rootRouteWithContext<{ queryClient: QueryClient }>()({
   component: () => <Outlet />,
@@ -29,6 +30,22 @@ const locationRoute = new Route({
   component: FutureLocation,
 });
 
+const crosswordRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/crossword',
+  beforeLoad: ({ context: { queryClient } }) => {
+    const mutationCache = queryClient.getMutationCache();
+    const data = mutationCache.find({
+      exact: true,
+      mutationKey: ['verifyPassword'],
+    })?.state.data as boolean;
+    if (!data) {
+      throw redirect({ to: '/time-machine' });
+    }
+  },
+  component: Crossword,
+});
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -38,7 +55,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const routeTree = rootRoute.addChildren([timeMachineRoute, locationRoute]);
+const routeTree = rootRoute.addChildren([timeMachineRoute, locationRoute, crosswordRoute]);
 
 const router = new Router({ routeTree, context: { queryClient } });
 

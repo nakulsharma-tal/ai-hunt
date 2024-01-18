@@ -1,5 +1,23 @@
-import { useState } from 'react';
+import { useNavigate } from '@tanstack/react-router';
+import { useCallback, useState } from 'react';
 
+export function FutureLocation() {
+  return (
+    <div className='bg-gray-200 p-4 w-96 h-auto'>
+      <div className='max-w-md mx-auto'>
+        <p className='text-lg font-semibold'>
+          Great! You have arrived at the correct location. You are one step closer to proving yourself as the messiah.
+        </p>
+        <p className='mt-4'>
+          You are not seeing anything else here because liberators want to hide themselves from the AI cults. So they
+          concealed their presence with a force field around themselves. They exist right here, but they are not visible
+          to the eye. You need to alter the force field's source code and make them visible.
+        </p>
+      </div>
+      <HiddenLocation />
+    </div>
+  );
+}
 export function HiddenLocation() {
   const [revealCrossword, setRevealCrossword] = useState<boolean>(false);
 
@@ -18,13 +36,19 @@ export function HiddenLocation() {
           Start training
         </button>
       )}
-      {revealCrossword && <CrossWord />}
+      {revealCrossword && <CrosswordIntroduction />}
     </div>
   );
 }
 
-export function CrossWord() {
-  const [startPuzzle, setStartPuzzle] = useState<boolean>(false);
+export function CrosswordIntroduction() {
+  const navigate = useNavigate({ from: '/location' });
+  const navigateToCrossWord = useCallback(() => {
+    navigate({
+      to: '/crossword',
+    });
+  }, [navigate]);
+
   return (
     <div className=''>
       <div>
@@ -47,39 +71,13 @@ export function CrossWord() {
           None or more statements of each clue could be wrong and misleading. But the majority of the statements should
           be pointing to the correct answer. Fight through this confusing darkness and be the lightning that you are!
         </p>
-        {!startPuzzle && (
-          <button
-            className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
-            onClick={() => setStartPuzzle(true)}
-          >
-            Start Puzzle
-          </button>
-        )}
+        <button
+          className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'
+          onClick={navigateToCrossWord}
+        >
+          Start Puzzle
+        </button>
       </div>
-      {startPuzzle && (
-        <div>
-          <img src='crossword-image.png' alt='Crossword' className='' />
-          <div className=''>
-            <h3 className='text-xl font-bold'>Across</h3>
-            <ol className='list-decimal pl-4'>
-              <li>Question 1</li>
-              <li>Question 2</li>
-              <li>Question 3</li>
-              <li>Question 4</li>
-            </ol>
-          </div>
-
-          <div className=''>
-            <h3 className='text-xl font-bold'>Down</h3>
-            <ol className='list-decimal pl-4'>
-              <li>Question 1</li>
-              <li>Question 2</li>
-              <li>Question 3</li>
-              <li>Question 4</li>
-            </ol>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

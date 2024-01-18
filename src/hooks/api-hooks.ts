@@ -8,16 +8,16 @@ export type VerifyPasswordRequest = { password: string };
 
 const verifyPassword = async ({ password }: VerifyPasswordRequest) => {
   const res = await axios.post<ApiResponse<VerifyPasswordResponse>>(
-    '/api/verify-password',
+    'ai/time_machine/verify',
     { password },
     {
-      baseURL: 'http://localhost:3000',
+      baseURL: 'http://localhost:8000',
     }
   );
-  if (!(res.status === 200)) {
-    throw new Error('Network response was not ok');
+  if (!(res.status === 200) || res.data.status !== 'Success') {
+    throw new Error('Errored');
   }
-  return res.data.status === 'Success' && res.data.data.verified;
+  return res.data.data.verified;
 };
 
 export function useVerifyPassword() {
