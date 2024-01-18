@@ -1,10 +1,7 @@
 import { Outlet, RootRoute, Route, Router, RouterProvider } from '@tanstack/react-router';
-import { FutureComponent } from './containers/location';
+import { FutureLocation } from './containers/location';
 import { TimeMachine } from './containers/time-machine';
 
-export function Home() {
-  return <div className='p-2'>Hello from Home!</div>;
-}
 const rootRoute = new RootRoute({
   component: () => <Outlet />,
 });
@@ -18,7 +15,7 @@ const timeMachineRoute = new Route({
 const locationRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/location',
-  component: FutureComponent,
+  component: FutureLocation,
 });
 
 const routeTree = rootRoute.addChildren([timeMachineRoute, locationRoute]);
@@ -32,5 +29,9 @@ declare module '@tanstack/react-router' {
 }
 
 export const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <div className='flex justify-center items-center h-screen'>
+      <RouterProvider router={router} />
+    </div>
+  );
 };
