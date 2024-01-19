@@ -1,5 +1,5 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  VITE_ROUTE_PASSWORD: string;
+  VITE_API_BASE_URL: string;
 }

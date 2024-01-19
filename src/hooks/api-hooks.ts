@@ -11,7 +11,7 @@ const verifyPassword = async ({ password }: VerifyPasswordRequest) => {
     'ai/time_machine/verify',
     { password },
     {
-      baseURL: 'http://localhost:8000',
+      baseURL: import.meta.env.VITE_API_BASE_URL,
     }
   );
   if (!(res.status === 200) || res.data.status !== 'Success') {
