@@ -11,6 +11,7 @@ import {
 import { FutureLocation } from './containers/future';
 import { TimeMachine } from './containers/time-machine';
 import { Crossword } from './containers/future/crossword';
+import { LastStand } from './containers/last-stand';
 
 function Root() {
   const navigate = useNavigate({ from: '/' });
@@ -60,6 +61,12 @@ const crosswordRoute = new Route({
   component: Crossword,
 });
 
+const lastStandRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/last-stand',
+  component: LastStand,
+});
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -69,7 +76,7 @@ const queryClient = new QueryClient({
   },
 });
 
-const routeTree = rootRoute.addChildren([timeMachineRoute, locationRoute, crosswordRoute]);
+const routeTree = rootRoute.addChildren([timeMachineRoute, locationRoute, crosswordRoute, lastStandRoute]);
 
 const router = new Router({ routeTree, context: { queryClient } });
 

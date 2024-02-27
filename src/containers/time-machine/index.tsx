@@ -8,7 +8,7 @@ export function TimeMachine() {
   const { mutateAsync } = useVerifyPassword();
 
   const handleSubmit = React.useCallback(async () => {
-    const data = await mutateAsync({ password });
+    const data = await mutateAsync({ password, round: 1 });
     if (!data) return alert('Wrong Password');
 
     navigate({
