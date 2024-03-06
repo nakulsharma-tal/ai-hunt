@@ -5,7 +5,7 @@ import { useVerifyPassword } from '../../hooks/api-hooks';
 export function TimeMachine() {
   const [password, setPassword] = React.useState('');
   const navigate = useNavigate({ from: '/time-machine' });
-  const { mutateAsync } = useVerifyPassword();
+  const { mutateAsync } = useVerifyPassword(1);
 
   const handleSubmit = React.useCallback(async () => {
     const data = await mutateAsync({ password, round: 1 });

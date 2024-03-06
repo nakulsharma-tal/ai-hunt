@@ -1,4 +1,25 @@
+import { useNavigate } from '@tanstack/react-router';
+import { useCallback, useState } from 'react';
+import { useRecordFinalRound } from '../../hooks/api-hooks';
+
 export function LastStand() {
+  const [solution, setSolution] = useState('');
+  const [teamId, setTeamId] = useState('');
+
+  const navigate = useNavigate({ from: '/' });
+
+  const { mutateAsync } = useRecordFinalRound();
+
+  const handleSubmit = useCallback(async () => {
+    const data = await mutateAsync({ solution, teamId });
+    if (!data) return alert('Something went wrong! Please try again.');
+    if (data.message) alert(data.message);
+
+    navigate({
+      to: '/',
+    });
+  }, [navigate, mutateAsync, solution, teamId]);
+
   return (
     <div>
       <h1>Last Stand</h1>
@@ -33,6 +54,30 @@ export function LastStand() {
           travel you at 2x speed. (Fuel stations, Booster Stations, Cult houses and Drone locations are marked on the
           MAP) Tell us the order in which cities were visited and time taken for the visit
         </p>
+      </div>
+      <div>
+        <p>Get your document data from here.</p>
+      </div>
+      <div>
+        <p>Team Id</p>
+        <input
+          type='text'
+          value={teamId}
+          onChange={(e) => setTeamId(e.target.value)}
+          className='mt-2 p-2 border border-gray-300 rounded'
+        />
+        <p>Enter your answers here. </p>
+        <div>
+          <input
+            type='text'
+            value={solution}
+            onChange={(e) => setSolution(e.target.value)}
+            className='mt-2 p-2 border border-gray-300 rounded'
+          />
+          <button onClick={handleSubmit} className='mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600'>
+            Submit Password
+          </button>
+        </div>
       </div>
     </div>
   );

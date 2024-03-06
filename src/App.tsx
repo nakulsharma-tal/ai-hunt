@@ -12,6 +12,7 @@ import { FutureLocation } from './containers/future';
 import { TimeMachine } from './containers/time-machine';
 import { Crossword } from './containers/future/crossword';
 import { LastStand } from './containers/last-stand';
+import { Congratulations } from './containers/congratulations';
 
 function Root() {
   const navigate = useNavigate({ from: '/' });
@@ -36,7 +37,7 @@ const locationRoute = new Route({
     const mutationCache = queryClient.getMutationCache();
     const data = mutationCache.find({
       exact: true,
-      mutationKey: ['verifyPassword'],
+      mutationKey: ['verifyPassword', 1],
     })?.state.data as boolean;
     if (!data) {
       throw redirect({ to: '/time-machine' });
@@ -52,7 +53,7 @@ const crosswordRoute = new Route({
     const mutationCache = queryClient.getMutationCache();
     const data = mutationCache.find({
       exact: true,
-      mutationKey: ['verifyPassword'],
+      mutationKey: ['verifyPassword', 1],
     })?.state.data as boolean;
     if (!data) {
       throw redirect({ to: '/time-machine' });
@@ -63,8 +64,34 @@ const crosswordRoute = new Route({
 
 const lastStandRoute = new Route({
   getParentRoute: () => rootRoute,
+  beforeLoad: ({ context: { queryClient } }) => {
+    const mutationCache = queryClient.getMutationCache();
+    const data = mutationCache.find({
+      exact: true,
+      mutationKey: ['verifyPassword', 2],
+    })?.state.data as boolean;
+    if (!data) {
+      throw redirect({ to: '/crossword' });
+    }
+  },
   path: '/last-stand',
   component: LastStand,
+});
+
+const congratulationsRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/congratulations',
+  beforeLoad: ({ context: { queryClient } }) => {
+    const mutationCache = queryClient.getMutationCache();
+    const data = mutationCache.find({
+      exact: true,
+      mutationKey: ['verifyPassword', 2],
+    })?.state.data as boolean;
+    if (!data) {
+      throw redirect({ to: '/crossword' });
+    }
+  },
+  component: Congratulations,
 });
 
 const queryClient = new QueryClient({
@@ -76,7 +103,13 @@ const queryClient = new QueryClient({
   },
 });
 
-const routeTree = rootRoute.addChildren([timeMachineRoute, locationRoute, crosswordRoute, lastStandRoute]);
+const routeTree = rootRoute.addChildren([
+  timeMachineRoute,
+  locationRoute,
+  crosswordRoute,
+  lastStandRoute,
+  congratulationsRoute,
+]);
 
 const router = new Router({ routeTree, context: { queryClient } });
 

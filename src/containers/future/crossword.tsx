@@ -113,7 +113,7 @@ const downQuestions: Question[] = [
 export function Crossword() {
   const [password, setPassword] = useState('');
   const navigate = useNavigate({ from: '/crossword' });
-  const { mutateAsync } = useVerifyPassword();
+  const { mutateAsync } = useVerifyPassword(2);
 
   const handleSubmit = useCallback(async () => {
     const data = await mutateAsync({ password, round: 2 });
