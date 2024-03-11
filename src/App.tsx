@@ -8,15 +8,16 @@ import {
   rootRouteWithContext,
   useNavigate,
 } from '@tanstack/react-router';
+import { Congratulations } from './containers/congratulations';
+import { CrackTheCode } from './containers/crack-the-code';
 import { FutureLocation } from './containers/future';
-import { TimeMachine } from './containers/time-machine';
 import { Crossword } from './containers/future/crossword';
 import { LastStand } from './containers/last-stand';
-import { Congratulations } from './containers/congratulations';
+import { Welcome } from './containers/welcome';
 
 function Root() {
   const navigate = useNavigate({ from: '/' });
-  navigate({ to: '/time-machine' });
+  navigate({ to: '/welcome' });
   return <Outlet />;
 }
 
@@ -24,10 +25,16 @@ const rootRoute = rootRouteWithContext<{ queryClient: QueryClient }>()({
   component: Root,
 });
 
-const timeMachineRoute = new Route({
+const welcomeRoute = new Route({
+  getParentRoute: () => rootRoute,
+  path: '/welcome',
+  component: Welcome,
+});
+
+const crackTheCodeRoute = new Route({
   getParentRoute: () => rootRoute,
   path: '/time-machine',
-  component: TimeMachine,
+  component: CrackTheCode,
 });
 
 const locationRoute = new Route({
@@ -104,11 +111,12 @@ const queryClient = new QueryClient({
 });
 
 const routeTree = rootRoute.addChildren([
-  timeMachineRoute,
+  welcomeRoute,
   locationRoute,
   crosswordRoute,
   lastStandRoute,
   congratulationsRoute,
+  crackTheCodeRoute,
 ]);
 
 const router = new Router({ routeTree, context: { queryClient } });

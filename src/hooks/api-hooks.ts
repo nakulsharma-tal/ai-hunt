@@ -21,7 +21,7 @@ const verifyPassword = async ({ password, round }: VerifyPasswordRequest) => {
   return res.data.data.verified;
 };
 
-export function useVerifyPassword(round: number) {
+export function useVerifyPassword(round: 1 | 2 | 0) {
   return useMutation({
     mutationKey: ['verifyPassword', round],
     mutationFn: verifyPassword,

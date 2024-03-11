@@ -16,7 +16,7 @@ export function LastStand() {
     if (data.message) alert(data.message);
 
     navigate({
-      to: '/',
+      to: '/crossword',
     });
   }, [navigate, mutateAsync, solution, teamId]);
 
