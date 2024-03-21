@@ -1,7 +1,8 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
 import ReactSyntaxHighlighter from 'react-syntax-highlighter';
-import { useVerifyPassword } from '../../hooks/api-hooks';
+import { useVerifySubmissionQuery } from '../../hooks/api-hooks';
+import { CompetitionRound } from '../../types';
 
 const codeSnippetForEFrequency = `
 const text = "Lorem ipsum dolor sit amet, consectetur adipiscing
@@ -111,18 +112,18 @@ const downQuestions: Question[] = [
 ];
 
 export function Crossword() {
-  const [password, setPassword] = useState('');
+  const [passkey, setPassword] = useState('');
   const navigate = useNavigate({ from: '/crossword' });
-  const { mutateAsync } = useVerifyPassword(2);
+  const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.Second);
 
   const handleSubmit = useCallback(async () => {
-    const data = await mutateAsync({ password, round: 2 });
+    const data = await mutateAsync({ passkey, round: CompetitionRound.Second });
     if (!data) return alert('Wrong Password');
 
     navigate({
       to: '/last-stand',
     });
-  }, [mutateAsync, navigate, password]);
+  }, [mutateAsync, navigate, passkey]);
 
   return (
     <div className='bg-gray-200 p-4 w-96 h-auto'>
@@ -161,7 +162,7 @@ export function Crossword() {
         <div className='flex flex-col'>
           <input
             type='text'
-            value={password}
+            value={passkey}
             onChange={(e) => setPassword(e.target.value)}
             className='mt-2 p-2 border border-gray-300 rounded'
           />

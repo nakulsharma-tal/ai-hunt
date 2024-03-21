@@ -1,24 +1,25 @@
 import { useNavigate } from '@tanstack/react-router';
 import { useCallback, useState } from 'react';
-import { useRecordFinalRound } from '../../hooks/api-hooks';
+import { useVerifySubmissionQuery } from '../../hooks/api-hooks';
+import { CompetitionRound } from '../../types';
 
 export function LastStand() {
-  const [solution, setSolution] = useState('');
+  const [solutionUrl, setSolution] = useState('');
   const [teamId, setTeamId] = useState('');
 
   const navigate = useNavigate({ from: '/' });
 
-  const { mutateAsync } = useRecordFinalRound();
+  const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.Third);
 
   const handleSubmit = useCallback(async () => {
-    const data = await mutateAsync({ solution, teamId });
+    const data = await mutateAsync({ round: CompetitionRound.Third, teamId, solutionUrl });
     if (!data) return alert('Something went wrong! Please try again.');
-    if (data.message) alert(data.message);
+    if (data) alert('Your response has been submitted successfully!');
 
     navigate({
       to: '/crossword',
     });
-  }, [navigate, mutateAsync, solution, teamId]);
+  }, [navigate, mutateAsync, solutionUrl, teamId]);
 
   return (
     <div>
@@ -70,7 +71,7 @@ export function LastStand() {
         <div>
           <input
             type='text'
-            value={solution}
+            value={solutionUrl}
             onChange={(e) => setSolution(e.target.value)}
             className='mt-2 p-2 border border-gray-300 rounded'
           />

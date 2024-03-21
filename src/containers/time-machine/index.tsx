@@ -1,20 +1,21 @@
 import { useNavigate } from '@tanstack/react-router';
 import React from 'react';
-import { useVerifyPassword } from '../../hooks/api-hooks';
+import { useVerifySubmissionQuery } from '../../hooks/api-hooks';
+import { CompetitionRound } from '../../types';
 
 export function TimeMachine() {
-  const [password, setPassword] = React.useState('');
+  const [passkey, setPassword] = React.useState('');
   const navigate = useNavigate({ from: '/time-machine' });
-  const { mutateAsync } = useVerifyPassword(1);
+  const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.First);
 
   const handleSubmit = React.useCallback(async () => {
-    const data = await mutateAsync({ password, round: 1 });
+    const data = await mutateAsync({ passkey, round: CompetitionRound.First });
     if (!data) return alert('Wrong Password');
 
     navigate({
       to: '/location',
     });
-  }, [mutateAsync, navigate, password]);
+  }, [mutateAsync, navigate, passkey]);
 
   return (
     <div className='p-1'>
@@ -26,7 +27,7 @@ export function TimeMachine() {
       <div className='flex flex-col'>
         <input
           type='text'
-          value={password}
+          value={passkey}
           onChange={(e) => setPassword(e.target.value)}
           className='mt-2 p-2 border border-gray-300 rounded'
         />
@@ -37,3 +38,7 @@ export function TimeMachine() {
     </div>
   );
 }
+
+const a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+console.log(new Set(a));
