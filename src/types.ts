@@ -1,27 +1,43 @@
-import { HttpStatusCode } from 'axios';
+import { HttpStatusCode } from "axios";
 
-export type ApiResponse<T> =
-  | { message: 'success'; response: T; statusCode: 200 }
-  | { statusCode: Omit<HttpStatusCode, 200>; message: string };
+export type ApiResponseBase = { message: string; statusCode: HttpStatusCode };
 
-export type ISubmission = VerifySubmissionDto & { timestamp: string };
+export type ApiError = ApiResponseBase & { error: string };
 
-export interface VerifySubmissionDto {
-  round: CompetitionRound;
+export type ApiSuccess<T> = ApiResponseBase & { data: T };
 
-  passkey?: string;
+export type ApiResponse<T> = ApiError | ApiSuccess<T>;
 
-  solutionUrl?: string;
-
+export interface ISubmission {
+  timestamp: string;
   teamId?: string;
+  round: CompetitionRound;
+  passkey?: string;
+  solutionUrl?: string;
+}
+
+export interface ITeam {
+  id: string;
+  name: string;
+  members: Array<string>;
+  skypeId: string;
+  email: string;
+}
+
+export interface ISubmissionWithTeam extends Omit<ISubmission, "teamId"> {
+  team: ITeam;
 }
 
 export enum CompetitionRound {
-  Zero = 'Zero',
+  Zero = "Zero",
+  First = "First",
+  Second = "Second",
+  Third = "Third",
+}
 
-  First = 'First',
-
-  Second = 'Second',
-
-  Third = 'Third',
+export interface VerifySubmissionDto {
+  round: CompetitionRound;
+  passkey?: string;
+  solutionUrl?: string;
+  teamId?: string;
 }
