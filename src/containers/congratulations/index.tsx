@@ -18,6 +18,7 @@ export function Congratulations() {
       <h2 className="text-2xl">You have successfully traveled across the country to kill the AI!</h2>
       <p>You have completed. Hope you have saved humanity!</p>
       <p>Liberators will make sure that you will be rewarded well in the future if you are quick enough to stop the AI.</p>
+
       <button onClick={goBack}>Go Back</button>
     </div>
   );

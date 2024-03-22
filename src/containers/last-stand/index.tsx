@@ -1,9 +1,12 @@
 import { useNavigate } from "@tanstack/react-router";
+import { HttpStatusCode } from "axios";
 import { useCallback, useState } from "react";
+import { toast } from "react-toastify";
 
 import { AppRoutes } from "../../app-routes";
-import { useVerifySubmissionQuery } from "../../hooks/api-hooks";
-import { CompetitionRound } from "../../types";
+import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
+import { ApiError, CompetitionRound } from "../../types";
+import { RESPONSE_CAPTURE_SUCCESSFULLY } from "../../user-message.constant";
 
 export function LastStand() {
   const [solutionUrl, setSolution] = useState("");
@@ -18,11 +21,17 @@ export function LastStand() {
       teamId,
       solutionUrl,
     });
-    if (!data) return alert("Something went wrong! Please try again.");
-    if (data) alert("Your response has been submitted successfully!");
+
+    if (data?.statusCode === HttpStatusCode.Ok) {
+      toast.success(RESPONSE_CAPTURE_SUCCESSFULLY);
+    } else if ((data as ApiError).error) {
+      toast.error((data as ApiError).error);
+    } else {
+      toast.error(data.message);
+    }
 
     navigate({
-      to: AppRoutes.CROSSWORD,
+      to: AppRoutes.CONGRATULATIONS,
     });
   }, [navigate, mutateAsync, solutionUrl, teamId]);
 

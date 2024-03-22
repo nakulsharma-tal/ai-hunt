@@ -1,9 +1,12 @@
 import { useNavigate } from "@tanstack/react-router";
+import { HttpStatusCode } from "axios";
 import React from "react";
+import { toast } from "react-toastify";
 
 import { AppRoutes } from "../../app-routes";
-import { useVerifySubmissionQuery } from "../../hooks/api-hooks";
-import { CompetitionRound } from "../../types";
+import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
+import { ApiError, CompetitionRound } from "../../types";
+import { CORRECT_PASSKEY } from "../../user-message.constant";
 
 export function TimeMachine() {
   const [passkey, setPassword] = React.useState("");
@@ -13,7 +16,13 @@ export function TimeMachine() {
 
   const handleSubmit = React.useCallback(async () => {
     const data = await mutateAsync({ passkey, round: CompetitionRound.First });
-    if (!data) return alert("Wrong Password");
+    if (data?.statusCode === HttpStatusCode.Ok) {
+      toast.success(CORRECT_PASSKEY);
+    } else if ((data as ApiError).error) {
+      toast.error((data as ApiError).error);
+    } else {
+      toast.error(data.message);
+    }
 
     navigate({
       to: AppRoutes.LOCATION,

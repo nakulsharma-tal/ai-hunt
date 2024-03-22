@@ -1,10 +1,13 @@
 import { useNavigate } from "@tanstack/react-router";
+import { HttpStatusCode } from "axios";
 import { useCallback, useState } from "react";
 import ReactSyntaxHighlighter from "react-syntax-highlighter";
+import { toast } from "react-toastify";
 
 import { AppRoutes } from "../../app-routes";
-import { useVerifySubmissionQuery } from "../../hooks/api-hooks";
-import { CompetitionRound } from "../../types";
+import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
+import { ApiError, CompetitionRound } from "../../types";
+import { CORRECT_PASSKEY } from "../../user-message.constant";
 import { ACROSS_QUESTIONS, DOWN_QUESTIONS } from "./question.constant";
 
 export function Crossword() {
@@ -15,7 +18,13 @@ export function Crossword() {
 
   const handleSubmit = useCallback(async () => {
     const data = await mutateAsync({ passkey, round: CompetitionRound.Second });
-    if (!data) return alert("Wrong Password");
+    if (data?.statusCode === HttpStatusCode.Ok) {
+      toast.success(CORRECT_PASSKEY);
+    } else if ((data as ApiError).error) {
+      toast.error((data as ApiError).error);
+    } else {
+      toast.error(data.message);
+    }
 
     navigate({
       to: AppRoutes.LAST_STAND,

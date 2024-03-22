@@ -45,6 +45,7 @@ export function CrackTheCode() {
           <p>
             Your task is to find the correct popular phrase from the Morse code message and that will act as the password for the
             <b onClick={() => setShowTimeMachine(true)} style={{ cursor: "pointer" }}>
+              {" "}
               TimeMachine.
             </b>
           </p>

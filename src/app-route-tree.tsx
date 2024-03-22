@@ -5,11 +5,13 @@ import { Congratulations } from "./containers/congratulations";
 import { CrackTheCode } from "./containers/crack-the-code";
 import { Crossword } from "./containers/future/crossword";
 import { FutureLocation } from "./containers/future/future-location";
+import { Home } from "./containers/home";
 import { LastStand } from "./containers/last-stand";
 import { Welcome } from "./containers/welcome";
 import { AppRoutes } from "./app-routes";
-import { CompetitionRound } from "./types";
-import { Home } from "./Home";
+import { ApiResponse, CompetitionRound, ISubmission, ISubmissionWithTeam } from "./types";
+import { VERIFY_SUBMISSION_MUTATION_KEY } from "./hooks/useVerifySubmissionQuery";
+import { HttpStatusCode } from "axios";
 
 const rootRoute = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   component: Home,
@@ -34,9 +36,9 @@ const locationRoute = new Route({
     const mutationCache = queryClient.getMutationCache();
     const data = mutationCache.find({
       exact: true,
-      mutationKey: ["verifyPassword", CompetitionRound.First],
-    })?.state.data as boolean;
-    if (!data) {
+      mutationKey: [VERIFY_SUBMISSION_MUTATION_KEY, CompetitionRound.First],
+    })?.state.data as ApiResponse<ISubmission | ISubmissionWithTeam>;
+    if (data.statusCode !== HttpStatusCode.Ok) {
       throw redirect({ to: AppRoutes.TIME_MACHINE });
     }
   },
@@ -50,9 +52,9 @@ const crosswordRoute = new Route({
     const mutationCache = queryClient.getMutationCache();
     const data = mutationCache.find({
       exact: true,
-      mutationKey: ["verifyPassword", CompetitionRound.First],
-    })?.state.data as boolean;
-    if (!data) {
+      mutationKey: [VERIFY_SUBMISSION_MUTATION_KEY, CompetitionRound.First],
+    })?.state.data as ApiResponse<ISubmission | ISubmissionWithTeam>;
+    if (data.statusCode !== HttpStatusCode.Ok) {
       throw redirect({ to: AppRoutes.TIME_MACHINE });
     }
   },
@@ -65,9 +67,9 @@ const lastStandRoute = new Route({
     const mutationCache = queryClient.getMutationCache();
     const data = mutationCache.find({
       exact: true,
-      mutationKey: ["verifyPassword", CompetitionRound.Second],
-    })?.state.data as boolean;
-    if (!data) {
+      mutationKey: [VERIFY_SUBMISSION_MUTATION_KEY, CompetitionRound.Second],
+    })?.state.data as ApiResponse<ISubmission | ISubmissionWithTeam>;
+    if (data.statusCode !== HttpStatusCode.Ok) {
       throw redirect({ to: AppRoutes.CROSSWORD });
     }
   },
@@ -82,10 +84,10 @@ const congratulationsRoute = new Route({
     const mutationCache = queryClient.getMutationCache();
     const data = mutationCache.find({
       exact: true,
-      mutationKey: ["verifyPassword", CompetitionRound.Second],
-    })?.state.data as boolean;
-    if (!data) {
-      throw redirect({ to: AppRoutes.CROSSWORD });
+      mutationKey: [VERIFY_SUBMISSION_MUTATION_KEY, CompetitionRound.Third],
+    })?.state.data as ApiResponse<ISubmission | ISubmissionWithTeam>;
+    if (data.statusCode !== HttpStatusCode.Ok) {
+      throw redirect({ to: AppRoutes.LAST_STAND });
     }
   },
   component: Congratulations,

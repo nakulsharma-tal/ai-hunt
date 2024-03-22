@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "@tanstack/react-router";
 
-import { AppRoutes } from "./app-routes";
+import { AppRoutes } from "../../app-routes";
 
 export function Home() {
   const navigate = useNavigate({ from: AppRoutes.HOME });
