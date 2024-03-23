@@ -1,3 +1,4 @@
+import { Box, Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 import { HttpStatusCode } from "axios";
 import React from "react";
@@ -9,7 +10,7 @@ import { ApiError, CompetitionRound } from "../../types";
 import { CORRECT_PASSKEY } from "../../user-message.constant";
 
 export function TimeMachine() {
-  const [passkey, setPassword] = React.useState("");
+  const [passkey, setPasskey] = React.useState("");
 
   const navigate = useNavigate({ from: AppRoutes.TIME_MACHINE });
   const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.First);
@@ -30,27 +31,30 @@ export function TimeMachine() {
   }, [mutateAsync, navigate, passkey]);
 
   return (
-    <div className="p-1">
-      <h1 className="text-4xl font-bold mb-4">Welcome to TimeMachine!</h1>
+    <Box sx={{ mt: 4 }}>
+      <Typography variant="h4" gutterBottom>
+        Welcome to Time Machine!
+      </Typography>
 
-      <h2 className="text-2xl">
-        Your Destination is set to year <b>2100</b>
-      </h2>
+      <Typography variant="body1" gutterBottom>
+        Your Destination is set to year <b>2100</b>. Enter your password for the destination.
+      </Typography>
 
-      <p className="mt-4 text-lg">Enter your password for the destination</p>
+      <TextField
+        id="round-1-passkey"
+        label="Passkey"
+        variant="outlined"
+        value={passkey}
+        onChange={(e) => setPasskey(e.target.value)}
+        fullWidth
+        sx={{ mt: 2 }}
+      />
 
-      <div className="flex flex-col">
-        <input
-          type="text"
-          value={passkey}
-          onChange={(e) => setPassword(e.target.value)}
-          className="mt-2 p-2 border border-gray-300 rounded"
-        />
-
-        <button onClick={handleSubmit} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+      <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+        <Button onClick={handleSubmit} sx={{ mt: 1 }}>
           Submit Password
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Box>
+    </Box>
   );
 }

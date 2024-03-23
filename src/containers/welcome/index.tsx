@@ -1,15 +1,18 @@
+import { Box, Button, Card, CardContent, CardHeader, TextField, Typography } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 import { HttpStatusCode } from "axios";
 import { useCallback, useState } from "react";
 import { toast } from "react-toastify";
 
 import { AppRoutes } from "../../app-routes";
+import crackTheProphecy from "../../assets/crack-the-prophecy.png";
 import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
 import { ApiError, CompetitionRound } from "../../types";
 import { CORRECT_PASSKEY } from "../../user-message.constant";
 
 export function Welcome() {
   const [passkey, setPasskey] = useState("");
+
   const navigate = useNavigate({ from: AppRoutes.WELCOME });
   const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.Zero);
 
@@ -29,21 +32,58 @@ export function Welcome() {
   }, [mutateAsync, navigate, passkey]);
 
   return (
-    <div className="p-1">
-      <h1 className="text-4xl font-bold mb-4">Liberators Welcome you!!!</h1>
-      <p className="mt-4 text-lg"> Enter the key from Cracked Prophesy to accept the mission </p>
-      <div className="flex flex-col">
-        <input
-          type="text"
-          value={passkey}
-          onChange={(e) => setPasskey(e.target.value)}
-          className="mt-2 p-2 border border-gray-300 rounded"
-          maxLength={6}
+    <Box
+      sx={{
+        display: "flex",
+        width: "100vw",
+        height: "100vh",
+        p: 0,
+        m: 0,
+        backgroundImage: `url(${crackTheProphecy})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <Card
+        sx={{
+          maxWidth: "50vw",
+          maxHeight: "50vh",
+          overflowY: "auto",
+          m: "auto",
+          mixBlendMode: "lighten",
+          backgroundColor: "rgba(224, 255, 255, 0.9)",
+          borderRadius: 4,
+          p: 2,
+        }}
+      >
+        <CardHeader
+          title="Liberators welcome you!!!"
+          titleTypographyProps={{
+            variant: "h3",
+            align: "center",
+          }}
         />
-        <button onClick={handleSubmit} className="mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-          Submit Key
-        </button>
-      </div>
-    </div>
+
+        <CardContent>
+          <Typography variant="h5">Enter the key from Cracked Prophesy to accept the mission</Typography>
+
+          <TextField
+            id="round-0-passkey"
+            label="Passkey"
+            variant="outlined"
+            value={passkey}
+            onChange={(e) => setPasskey(e.target.value)}
+            fullWidth
+            sx={{
+              my: 2,
+            }}
+          />
+
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button onClick={handleSubmit}>Submit Key</Button>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }

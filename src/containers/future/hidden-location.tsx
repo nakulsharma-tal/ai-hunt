@@ -1,31 +1,29 @@
-import { useState } from "react";
+import { Box, Button, Typography } from "@mui/material";
 
-import { CrosswordIntroduction } from "./crossword-introduction";
+export interface IHiddenLocationProps {
+  startTraining: () => void;
+}
 
-export function HiddenLocation() {
-  const [revealCrossword, setRevealCrossword] = useState<boolean>(false);
-
-  const startTraining = () => {
-    setRevealCrossword(true);
-  };
+export function HiddenLocation(props: IHiddenLocationProps) {
+  const { startTraining } = props;
 
   return (
-    <div className="hidden mt-4">
-      <p className="text-lg font-semibold">
+    <Box className="hidden" sx={{ mt: 4 }}>
+      <Typography variant="h6" gutterBottom>
         Great job on finding and altering the source code to expose the reality under the force field!
-      </p>
+      </Typography>
 
-      <p className="text-lg font-semibold">Welcome to the League of Liberators!</p>
+      <Typography variant="h6" gutterBottom>
+        Welcome to the League of Liberators!
+      </Typography>
 
-      <p className="text-lg font-semibold">Now, it's time for training!!!</p>
+      <Typography variant="h6" gutterBottom>
+        Now, it's time for training!!!
+      </Typography>
 
-      {!revealCrossword && (
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={startTraining}>
-          Start training
-        </button>
-      )}
-
-      {revealCrossword && <CrosswordIntroduction />}
-    </div>
+      <Box sx={{ display: "flex", justifyContent: "center" }}>
+        <Button onClick={startTraining}>Start training</Button>
+      </Box>
+    </Box>
   );
 }

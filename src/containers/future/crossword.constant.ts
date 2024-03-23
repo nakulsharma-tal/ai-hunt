@@ -1,17 +1,18 @@
 import { IQuestion } from "./question.interface";
 
-const CODE_SNIPPET_FOR_E_FREQUENCY = `
-const text = "Lorem ipsum dolor sit amet, consectetur adipiscing
- elit. Nam condimentum viverra libero, non vehicula magna dignissim
- eget. Duis eleifend consectetur tortor ac interdum. Donec sem
- sapien, cursus nec lectus a, semper tempus purus. Aliquam sit amet
- augue lobortis, viverra metus ac, fringilla ante. Aliquam neque
- nisi, ultrices quis risus at, porta iaculis odio. Aliquam lectus
- tellus, tempus eu nulla sed, tincidunt venenatis sapien. Sed varius
- enim sed massa maximus efficitur. Sed in diam ut augue pharetra
- faucibus eu sed ex. Morbi vel augue ac justo auctor condimentum quis
- eu elit. Ut efficitur tincidunt sodales. Aenean at velit eu justo
- facilisis euismod. Etiam eleifend elementum ante at aliquet.";
+export const CROSSWORD_IMAGE_URL = "https://talentica-js-saviour-hunt-public-files.s3.ap-south-1.amazonaws.com/round-2-highlighted-red-crossword.png";
+
+const CODE_SNIPPET_FOR_E_FREQUENCY = `const text = "Lorem ipsum dolor sit amet, consectetur adipiscing
+  elit. Nam condimentum viverra libero, non vehicula magna dignissim
+  eget. Duis eleifend consectetur tortor ac interdum. Donec sem
+  sapien, cursus nec lectus a, semper tempus purus. Aliquam sit amet
+  augue lobortis, viverra metus ac, fringilla ante. Aliquam neque
+  nisi, ultrices quis risus at, porta iaculis odio. Aliquam lectus
+  tellus, tempus eu nulla sed, tincidunt venenatis sapien. Sed varius
+  enim sed massa maximus efficitur. Sed in diam ut augue pharetra
+  faucibus eu sed ex. Morbi vel augue ac justo auctor condimentum quis
+  eu elit. Ut efficitur tincidunt sodales. Aenean at velit eu justo
+  facilisis euismod. Etiam eleifend elementum ante at aliquet.";
 
 function simple_count(text: string) {
   const N = 10000;
@@ -48,8 +49,7 @@ simple_count(text); // 28.193 ms
 complicated_count(text); // 0.376 ms
 `;
 
-const CODE_SNIPPET_FOR_REACTIVE_VALUE = `
-const person = { name: 'Alice', age: 12 };
+const CODE_SNIPPET_FOR_REACTIVE_VALUE = `const person = { name: 'Alice', age: 12 };
 const reactivePerson = useGetReactiveValue(person);
 reactivePerson.name = 'Bob';
 `;

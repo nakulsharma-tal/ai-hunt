@@ -24,11 +24,9 @@ const router = new Router({ routeTree: appRouteTree, context: { queryClient } })
 
 export const App = () => {
   return (
-    <div className="flex justify-center items-center h-screen">
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ToastContainer newestOnTop limit={4} pauseOnHover autoClose={10000} closeOnClick={false} />
-      </QueryClientProvider>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+      <ToastContainer newestOnTop limit={4} pauseOnHover autoClose={10000} closeOnClick={false} />
+    </QueryClientProvider>
   );
 };
