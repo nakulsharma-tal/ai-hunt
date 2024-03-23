@@ -28,7 +28,7 @@ export function CrackTheCode() {
           maxHeight: "90vh",
           overflowY: "auto",
           m: "auto",
-          backgroundColor: "rgba(224, 255, 255, 0.9)",
+          backgroundColor: "rgba(196, 213, 213, 0.8)",
           borderRadius: 4,
           p: 2,
         }}

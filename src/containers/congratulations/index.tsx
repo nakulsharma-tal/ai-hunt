@@ -25,6 +25,7 @@ export function Congratulations() {
         backgroundImage: `url(${crackTheProphecy})`,
         backgroundRepeat: "no-repeat",
         backgroundSize: "cover",
+        backgroundPosition: "center",
       }}
     >
       <Card
@@ -33,8 +34,7 @@ export function Congratulations() {
           maxHeight: "90vh",
           overflowY: "auto",
           m: "auto",
-          mixBlendMode: "lighten",
-          backgroundColor: "rgba(224, 255, 255, 0.9)",
+          backgroundColor: "rgba(196, 213, 213, 0.6)",
           borderRadius: 4,
           p: 2,
         }}
