@@ -1,7 +1,9 @@
+import { Box, Button, Card, CardContent, CardHeader, Typography } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback } from "react";
 
 import { AppRoutes } from "../../app-routes";
+import crackTheProphecy from "../../assets/crack-the-prophecy.png";
 
 export function Congratulations() {
   const navigate = useNavigate({ from: AppRoutes.CONGRATULATIONS });
@@ -13,13 +15,53 @@ export function Congratulations() {
   }, [navigate]);
 
   return (
-    <div className="p-1">
-      <h1 className="text-4xl font-bold mb-4">Congratulations!</h1>
-      <h2 className="text-2xl">You have successfully traveled across the country to kill the AI!</h2>
-      <p>You have completed. Hope you have saved humanity!</p>
-      <p>Liberators will make sure that you will be rewarded well in the future if you are quick enough to stop the AI.</p>
+    <Box
+      sx={{
+        display: "flex",
+        width: "100vw",
+        height: "100vh",
+        p: 0,
+        m: 0,
+        backgroundImage: `url(${crackTheProphecy})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <Card
+        sx={{
+          maxWidth: "50vw",
+          maxHeight: "90vh",
+          overflowY: "auto",
+          m: "auto",
+          mixBlendMode: "lighten",
+          backgroundColor: "rgba(224, 255, 255, 0.9)",
+          borderRadius: 4,
+          p: 2,
+        }}
+      >
+        <CardHeader
+          title="Congratulations!"
+          titleTypographyProps={{
+            variant: "h2",
+            align: "center",
+          }}
+        />
 
-      <button onClick={goBack}>Go Back</button>
-    </div>
+        <CardContent>
+          <Typography variant="h4">You have successfully traveled across the country to kill the AI!</Typography>
+          <Typography variant="h6" gutterBottom>
+            You have completed. Hope you have saved humanity!
+          </Typography>
+
+          <Typography variant="h6" gutterBottom>
+            Liberators will make sure that you will be rewarded well in the future if you are quick enough to stop the AI.
+          </Typography>
+
+          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+            <Button onClick={goBack}>Submit a different answer</Button>
+          </Box>
+        </CardContent>
+      </Card>
+    </Box>
   );
 }

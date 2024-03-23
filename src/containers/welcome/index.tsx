@@ -47,7 +47,7 @@ export function Welcome() {
       <Card
         sx={{
           maxWidth: "50vw",
-          maxHeight: "50vh",
+          maxHeight: "90vh",
           overflowY: "auto",
           m: "auto",
           mixBlendMode: "lighten",
