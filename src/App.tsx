@@ -26,7 +26,15 @@ export const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <RouterProvider router={router} />
-      <ToastContainer position="top-right" newestOnTop limit={2} autoClose={2000} closeOnClick={true} hideProgressBar />
+      <ToastContainer
+        position="top-right"
+        newestOnTop
+        limit={2}
+        autoClose={2000}
+        closeOnClick={true}
+        hideProgressBar
+        theme="dark"
+      />
     </QueryClientProvider>
   );
 };

@@ -45,7 +45,7 @@ export function LastStand() {
           maxHeight: "90vh",
           overflowY: "auto",
           m: "auto",
-          backgroundColor: "rgba(197, 203, 203, 0.8)",
+          backgroundColor: "rgba(197, 203, 203, 0.9)",
           borderRadius: 4,
           p: 2,
         }}

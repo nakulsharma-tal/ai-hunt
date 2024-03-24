@@ -34,7 +34,9 @@ export function useVerifySubmissionQuery(round: CompetitionRound) {
       toast.error((error.response?.data as ApiError | undefined)?.error || ERROR);
     },
     onMutate: () => {
-      toast.info(round === CompetitionRound.Third ? SUBMITTING_YOUR_RESPONSE : CHECKING_PASSKEY);
+      toast.info(round === CompetitionRound.Third ? SUBMITTING_YOUR_RESPONSE : CHECKING_PASSKEY, {
+        autoClose: false,
+      });
     },
   });
 }

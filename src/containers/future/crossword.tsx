@@ -21,24 +21,25 @@ function Question(props: IQuestionProps) {
 
   return (
     <Box sx={{ mb: 2 }}>
-      <Typography variant="body1" gutterBottom>
-        {question.question}
+      <Typography variant="body1" sx={{ whiteSpace: "pre-line" }} gutterBottom>
+        <b>{`${question.position}. `}</b>{question.question}
       </Typography>
       <Typography variant="caption" gutterBottom>
         {question.hint}
       </Typography>
 
       {question.codeSnippet && (
-        <Box sx={{ my: 2, display: "flex", justifyContent: "center" }}>
+        <Box sx={{ display: "flex", justifyContent: "center" }}>
           <ReactSyntaxHighlighter
             language="javascript"
             customStyle={{
               width: "80%",
               borderRadius: "8px",
               padding: "24px",
+              fontSize: "1rem",
             }}
           >
-            {[question.codeSnippet]}
+            {question.codeSnippet}
           </ReactSyntaxHighlighter>
         </Box>
       )}
@@ -79,15 +80,13 @@ export function Crossword() {
           maxHeight: "90vh",
           overflowY: "auto",
           m: "auto",
-          backgroundColor: "rgba(197, 203, 203, 0.8)",
+          backgroundColor: "rgba(197, 203, 203, 0.9)",
           borderRadius: 4,
           p: 2,
         }}
       >
         <CardContent>
-          <img src={CROSSWORD_IMAGE_URL} alt="Crossword" style={{ width: "100%", height: "auto", borderRadius: "16px" }} />
-
-          {/* TODO: ADD QUESTION POSITIONS */}
+          <img src={CROSSWORD_IMAGE_URL} alt="Crossword" style={{ width: "100%", height: "auto", borderRadius: "16px", mixBlendMode: "darken" }} />
 
           <Box sx={{ mt: 4 }}>
             <Typography variant="h6" gutterBottom>
