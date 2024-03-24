@@ -1,6 +1,7 @@
 import { IQuestion } from "./question.interface";
 
-export const CROSSWORD_IMAGE_URL = "https://talentica-js-saviour-hunt-public-files.s3.ap-south-1.amazonaws.com/round-2-highlighted-red-crossword.png";
+export const CROSSWORD_IMAGE_URL =
+  "https://talentica-js-saviour-hunt-public-files.s3.ap-south-1.amazonaws.com/round-2-highlighted-red-crossword.png";
 
 const CODE_SNIPPET_FOR_E_FREQUENCY = `const text = "Lorem ipsum dolor sit amet, consectetur adipiscing
   elit. Nam condimentum viverra libero, non vehicula magna dignissim

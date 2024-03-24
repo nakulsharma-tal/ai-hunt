@@ -1,17 +1,14 @@
-import { Box, Button, Card, CardContent, CardMedia, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "@tanstack/react-router";
-import { HttpStatusCode } from "axios";
 import { useCallback, useState } from "react";
 import ReactSyntaxHighlighter from "react-syntax-highlighter";
-import { toast } from "react-toastify";
 
 import { AppRoutes } from "../../app-routes";
 import riseOfTheSaviour from "../../assets/rise-of-the-saviour.jpg";
 import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
-import { ApiError, CompetitionRound } from "../../types";
-import { CORRECT_PASSKEY } from "../../user-message.constant";
+import { CompetitionRound } from "../../types";
 import { ACROSS_QUESTIONS, CROSSWORD_IMAGE_URL, DOWN_QUESTIONS } from "./crossword.constant";
 import { IQuestion } from "./question.interface";
 
@@ -33,9 +30,16 @@ function Question(props: IQuestionProps) {
 
       {question.codeSnippet && (
         <Box sx={{ my: 2, display: "flex", justifyContent: "center" }}>
-          <Box sx={{ width: "80%" }}>
-            <ReactSyntaxHighlighter language="javascript">{[question.codeSnippet]}</ReactSyntaxHighlighter>
-          </Box>
+          <ReactSyntaxHighlighter
+            language="javascript"
+            customStyle={{
+              width: "80%",
+              borderRadius: "8px",
+              padding: "24px",
+            }}
+          >
+            {[question.codeSnippet]}
+          </ReactSyntaxHighlighter>
         </Box>
       )}
     </Box>
@@ -49,15 +53,7 @@ export function Crossword() {
   const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.Second);
 
   const handleSubmit = useCallback(async () => {
-    const data = await mutateAsync({ passkey, round: CompetitionRound.Second });
-    if (data?.statusCode === HttpStatusCode.Ok) {
-      toast.success(CORRECT_PASSKEY);
-    } else if ((data as ApiError).error) {
-      toast.error((data as ApiError).error);
-    } else {
-      toast.error(data.message);
-    }
-
+    await mutateAsync({ passkey, round: CompetitionRound.Second });
     navigate({
       to: AppRoutes.LAST_STAND,
     });
@@ -83,23 +79,17 @@ export function Crossword() {
           maxHeight: "90vh",
           overflowY: "auto",
           m: "auto",
-          backgroundColor: "rgba(240, 255, 255, 0.9)",
+          backgroundColor: "rgba(197, 203, 203, 0.8)",
           borderRadius: 4,
           p: 2,
         }}
       >
-        <CardMedia
-          sx={{
-            height: 0,
-            paddingTop: "56.25%", // 16:9,
-            marginTop: "30",
-            backgroundSize: "contain",
-          }}
-          image={CROSSWORD_IMAGE_URL}
-          title="Crossword"
-        />
         <CardContent>
-          <Box>
+          <img src={CROSSWORD_IMAGE_URL} alt="Crossword" style={{ width: "100%", height: "auto", borderRadius: "16px" }} />
+
+          {/* TODO: ADD QUESTION POSITIONS */}
+
+          <Box sx={{ mt: 4 }}>
             <Typography variant="h6" gutterBottom>
               Across
               <ArrowForwardIcon />
@@ -120,13 +110,14 @@ export function Crossword() {
           </Box>
 
           <Box sx={{ mt: 4 }}>
+            {/* TODO: CHECK THE SEQUENCE ONCE */}
             <Typography variant="body1" sx={{ fontWeight: 700 }} gutterBottom>
-              Passkey is made of the character sequence at positions 8A 3A 1D 4D 5D 6A 7D 2D in the crossword and it is 8
+              Passkey is made of the character sequence at positions (8A 3A 1D 4D 5D 6A 7D 2D) in the crossword and it is 8
               characters long. Enter the crossword key to complete the mission -
             </Typography>
 
             <TextField
-              id="round-0-passkey"
+              id="round-2-passkey"
               label="Passkey"
               variant="outlined"
               value={passkey}

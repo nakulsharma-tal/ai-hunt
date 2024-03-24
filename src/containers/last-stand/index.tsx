@@ -1,14 +1,11 @@
 import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
-import { HttpStatusCode } from "axios";
 import { useCallback, useState } from "react";
-import { toast } from "react-toastify";
 
 import { AppRoutes } from "../../app-routes";
 import riseOfTheSaviour from "../../assets/rise-of-the-saviour.jpg";
 import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
-import { ApiError, CompetitionRound } from "../../types";
-import { RESPONSE_CAPTURE_SUCCESSFULLY } from "../../user-message.constant";
+import { CompetitionRound } from "../../types";
 
 export function LastStand() {
   const [solutionUrl, setSolution] = useState("");
@@ -18,20 +15,11 @@ export function LastStand() {
   const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.Third);
 
   const handleSubmit = useCallback(async () => {
-    const data = await mutateAsync({
+    await mutateAsync({
       round: CompetitionRound.Third,
       teamId,
       solutionUrl,
     });
-
-    if (data?.statusCode === HttpStatusCode.Ok) {
-      toast.success(RESPONSE_CAPTURE_SUCCESSFULLY);
-    } else if ((data as ApiError).error) {
-      toast.error((data as ApiError).error);
-    } else {
-      toast.error(data.message);
-    }
-
     navigate({
       to: AppRoutes.CONGRATULATIONS,
     });

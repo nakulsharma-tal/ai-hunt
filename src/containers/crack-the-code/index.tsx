@@ -34,6 +34,12 @@ export function CrackTheCode() {
         }}
       >
         <CardContent>
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Typography variant="h4" gutterBottom>
+              Welcome to Time Machine!
+            </Typography>
+          </Box>
+
           <Box sx={{ display: "flex", flexDirection: "column" }}>
             <Typography variant="body1" gutterBottom>
               You are a brave one! For accepting the mission! And a smart one too for cracking the Prophesy. You have reached the

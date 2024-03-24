@@ -50,7 +50,7 @@ export function Congratulations() {
         <CardContent>
           <Typography variant="h4">You have successfully traveled across the country to kill the AI!</Typography>
           <Typography variant="h6" gutterBottom>
-            You have completed. Hope you have saved humanity!
+            You have completed the mission. Hope you have saved humanity!
           </Typography>
 
           <Typography variant="h6" gutterBottom>

@@ -1,13 +1,10 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
-import { HttpStatusCode } from "axios";
 import React from "react";
-import { toast } from "react-toastify";
 
 import { AppRoutes } from "../../app-routes";
 import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
-import { ApiError, CompetitionRound } from "../../types";
-import { CORRECT_PASSKEY } from "../../user-message.constant";
+import { CompetitionRound } from "../../types";
 
 export function TimeMachine() {
   const [passkey, setPasskey] = React.useState("");
@@ -16,26 +13,14 @@ export function TimeMachine() {
   const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.First);
 
   const handleSubmit = React.useCallback(async () => {
-    const data = await mutateAsync({ passkey, round: CompetitionRound.First });
-    if (data?.statusCode === HttpStatusCode.Ok) {
-      toast.success(CORRECT_PASSKEY);
-    } else if ((data as ApiError).error) {
-      toast.error((data as ApiError).error);
-    } else {
-      toast.error(data.message);
-    }
-
+    await mutateAsync({ passkey, round: CompetitionRound.First });
     navigate({
       to: AppRoutes.LOCATION,
     });
   }, [mutateAsync, navigate, passkey]);
 
   return (
-    <Box sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
-        Welcome to Time Machine!
-      </Typography>
-
+    <Box sx={{ mt: 2 }}>
       <Typography variant="body1" gutterBottom>
         Your Destination is set to year <b>2100</b>. Enter your password for the destination.
       </Typography>

@@ -1,15 +1,16 @@
 import { Box, Card, CardContent, Typography } from "@mui/material";
-import { HiddenLocation } from "./hidden-location";
+import { useCallback, useState } from "react";
+
 import crackTheProphecy from "../../assets/crack-the-prophecy.png";
-import { useState } from "react";
 import { CrosswordIntroduction } from "./crossword-introduction";
+import { HiddenLocation } from "./hidden-location";
 
 export function FutureLocation() {
   const [revealCrossword, setRevealCrossword] = useState<boolean>(false);
 
-  const startTraining = () => {
+  const startTraining = useCallback(() => {
     setRevealCrossword(true);
-  };
+  }, []);
 
   return (
     <Box
