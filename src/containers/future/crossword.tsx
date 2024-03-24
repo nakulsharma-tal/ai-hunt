@@ -22,7 +22,8 @@ function Question(props: IQuestionProps) {
   return (
     <Box sx={{ mb: 2 }}>
       <Typography variant="body1" sx={{ whiteSpace: "pre-line" }} gutterBottom>
-        <b>{`${question.position}. `}</b>{question.question}
+        <b>{`${question.position}. `}</b>
+        {question.question}
       </Typography>
       <Typography variant="caption" gutterBottom>
         {question.hint}
@@ -86,7 +87,11 @@ export function Crossword() {
         }}
       >
         <CardContent>
-          <img src={CROSSWORD_IMAGE_URL} alt="Crossword" style={{ width: "100%", height: "auto", borderRadius: "16px", mixBlendMode: "darken" }} />
+          <img
+            src={CROSSWORD_IMAGE_URL}
+            alt="Crossword"
+            style={{ width: "100%", height: "auto", borderRadius: "16px", mixBlendMode: "darken" }}
+          />
 
           <Box sx={{ mt: 4 }}>
             <Typography variant="h6" gutterBottom>
@@ -94,7 +99,7 @@ export function Crossword() {
               <ArrowForwardIcon />
             </Typography>
             {ACROSS_QUESTIONS.map((question) => (
-              <Question question={question} />
+              <Question key={question.position} question={question} />
             ))}
           </Box>
 
@@ -104,7 +109,7 @@ export function Crossword() {
               <ArrowDownwardIcon />
             </Typography>
             {DOWN_QUESTIONS.map((question) => (
-              <Question question={question} />
+              <Question key={question.position} question={question} />
             ))}
           </Box>
 
