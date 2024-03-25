@@ -1,5 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 
+import "./hidden-location.css";
+
 export interface IHiddenLocationProps {
   startTraining: () => void;
 }

@@ -90,11 +90,16 @@ export function Crossword() {
           <img
             src={CROSSWORD_IMAGE_URL}
             alt="Crossword"
-            style={{ width: "100%", height: "auto", borderRadius: "16px", mixBlendMode: "darken" }}
+            style={{
+              width: "100%",
+              height: "auto",
+              borderRadius: "16px",
+              // mixBlendMode: "darken"
+            }}
           />
 
           <Box sx={{ mt: 4 }}>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
               Across
               <ArrowForwardIcon />
             </Typography>
@@ -104,7 +109,7 @@ export function Crossword() {
           </Box>
 
           <Box>
-            <Typography variant="h6" gutterBottom>
+            <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
               Down
               <ArrowDownwardIcon />
             </Typography>
