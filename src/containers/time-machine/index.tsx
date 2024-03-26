@@ -6,6 +6,8 @@ import { AppRoutes } from "../../app-routes";
 import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
 import { CompetitionRound } from "../../types";
 
+const ROUND_ONE_PASSKEY_LENGTH = 2;
+
 export function TimeMachine() {
   const [passkey, setPasskey] = React.useState("");
 
@@ -22,7 +24,7 @@ export function TimeMachine() {
   return (
     <Box sx={{ mt: 2 }}>
       <Typography variant="body1" gutterBottom>
-        Your Destination is set to year <b>2100</b>. Enter your password for the destination.
+        Your Destination is set to year <b>2100</b>. Enter your passkey for the destination.
       </Typography>
 
       <TextField
@@ -33,10 +35,13 @@ export function TimeMachine() {
         onChange={(e) => setPasskey(e.target.value)}
         fullWidth
         sx={{ mt: 2 }}
+        inputProps={{
+          maxLength: ROUND_ONE_PASSKEY_LENGTH,
+        }}
       />
 
       <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-        <Button onClick={handleSubmit} sx={{ mt: 1 }}>
+        <Button onClick={handleSubmit} sx={{ mt: 1 }} disabled={passkey.length !== ROUND_ONE_PASSKEY_LENGTH}>
           Submit Password
         </Button>
       </Box>

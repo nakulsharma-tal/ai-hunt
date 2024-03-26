@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, CardHeader, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, CardHeader, Link, TextField, Typography } from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
 
@@ -6,6 +6,9 @@ import { AppRoutes } from "../../app-routes";
 import crackTheProphecy from "../../assets/crack-the-prophecy.png";
 import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
 import { CompetitionRound } from "../../types";
+
+const ROUND_ZERO_PDF_LINK = "https://talentica-js-saviour-hunt-public-files.s3.ap-south-1.amazonaws.com/Round-0.pdf";
+const ROUND_ZERO_PASSKEY_LENGTH = 6;
 
 export function Welcome() {
   const [passkey, setPasskey] = useState("");
@@ -54,7 +57,13 @@ export function Welcome() {
         />
 
         <CardContent>
-          <Typography variant="h5">Enter the key from Cracked Prophesy to accept the mission</Typography>
+          <Typography variant="h5">
+            Enter the key from{" "}
+            <Link href={ROUND_ZERO_PDF_LINK} underline="always" target="_blank" rel="noreferrer">
+              Cracked Prophesy
+            </Link>{" "}
+            to accept the mission
+          </Typography>
 
           <TextField
             id="round-0-passkey"
@@ -66,10 +75,15 @@ export function Welcome() {
             sx={{
               my: 2,
             }}
+            inputProps={{
+              maxLength: ROUND_ZERO_PASSKEY_LENGTH,
+            }}
           />
 
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={handleSubmit}>Submit Key</Button>
+            <Button onClick={handleSubmit} disabled={passkey.length !== ROUND_ZERO_PASSKEY_LENGTH}>
+              Submit Key
+            </Button>
           </Box>
         </CardContent>
       </Card>

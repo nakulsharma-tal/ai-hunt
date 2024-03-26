@@ -1,4 +1,4 @@
-import { Box, Button, Card, CardContent, TextField, Typography } from "@mui/material";
+import { Box, Button, Card, CardContent, Link, TextField, Typography } from "@mui/material";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "@tanstack/react-router";
@@ -12,6 +12,9 @@ import { CompetitionRound } from "../../types";
 import { ACROSS_QUESTIONS, CROSSWORD_IMAGE_URL, DOWN_QUESTIONS } from "./crossword.constant";
 import { IQuestion } from "./question.interface";
 
+const ROUND_TWO_PASSKEY_POSITIONS = "[8G, 3G, 1G, 4C, 5E, 6B, 7D, 2E]";
+const ROUND_TWO_PASSKEY_LENGTH = 8;
+
 interface IQuestionProps {
   question: IQuestion;
 }
@@ -22,7 +25,7 @@ function Question(props: IQuestionProps) {
   return (
     <Box sx={{ mb: 2 }}>
       <Typography variant="body1" sx={{ whiteSpace: "pre-line" }} gutterBottom>
-        <b>{`${question.position}. `}</b>
+        <b>{`Q. ${question.position}) `}</b>
         {question.question}
       </Typography>
       <Typography variant="caption" gutterBottom>
@@ -87,6 +90,11 @@ export function Crossword() {
         }}
       >
         <CardContent>
+          <Typography variant="body1" gutterBottom>
+            Find out the passkey, made of the character sequence at highlighted positions {ROUND_TWO_PASSKEY_POSITIONS} in the
+            crossword, to complete the mission.
+          </Typography>
+
           <img
             src={CROSSWORD_IMAGE_URL}
             alt="Crossword"
@@ -94,9 +102,17 @@ export function Crossword() {
               width: "100%",
               height: "auto",
               borderRadius: "16px",
-              // mixBlendMode: "darken"
+              marginTop: "16px",
             }}
           />
+
+          <Typography variant="body1" sx={{ mt: 2 }} gutterBottom>
+            Click{" "}
+            <Link href={CROSSWORD_IMAGE_URL} underline="always" target="_blank" rel="noreferrer">
+              here
+            </Link>{" "}
+            to open the crossword in a new tab.
+          </Typography>
 
           <Box sx={{ mt: 4 }}>
             <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
@@ -119,10 +135,9 @@ export function Crossword() {
           </Box>
 
           <Box sx={{ mt: 4 }}>
-            {/* TODO: CHECK THE SEQUENCE ONCE */}
             <Typography variant="body1" sx={{ fontWeight: 700 }} gutterBottom>
-              Passkey is made of the character sequence at positions (8A 3A 1D 4D 5D 6A 7D 2D) in the crossword and it is 8
-              characters long. Enter the crossword key to complete the mission -
+              Passkey is made of the character sequence at highlighted positions {ROUND_TWO_PASSKEY_POSITIONS} in the crossword
+              and it is {ROUND_TWO_PASSKEY_LENGTH} characters long. Enter the crossword key to complete the mission -
             </Typography>
 
             <TextField
@@ -135,12 +150,12 @@ export function Crossword() {
               sx={{
                 my: 2,
               }}
-              inputProps={{ maxLength: 8 }}
+              inputProps={{ maxLength: ROUND_TWO_PASSKEY_LENGTH }}
             />
 
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button onClick={handleSubmit} disabled={passkey.length !== 8}>
-                Submit Password
+              <Button onClick={handleSubmit} disabled={passkey.length !== ROUND_TWO_PASSKEY_LENGTH}>
+                Submit Passkey
               </Button>
             </Box>
           </Box>

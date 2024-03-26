@@ -61,11 +61,16 @@ export function CrackTheCode() {
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", mt: 2 }}>
-            <Typography variant="body1" sx={{ fontWeight: 700 }} gutterBottom>
+            <Typography variant="body1" sx={{ fontWeight: 700 }}>
               Encrypted Message:
             </Typography>
-            <ReactSyntaxHighlighter language="javascript" style={undefined}>
-              {[QUESTION_MORSE_CODE]}
+            <ReactSyntaxHighlighter
+              language="text"
+              customStyle={{
+                fontVariantLigatures: "no-contextual",
+              }}
+            >
+              {QUESTION_MORSE_CODE}
             </ReactSyntaxHighlighter>
           </Box>
 
@@ -78,12 +83,19 @@ export function CrackTheCode() {
               It's a morse code with a twist...
             </Typography>
 
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1">
               If you use an online Morse decoder, it will fail to decode the message. For example, if you encode "awesome" and
               "eyesome", their encodings will be the same after removing the spaces:
             </Typography>
 
-            <ReactSyntaxHighlighter language="javascript">{[SAMPLE_MORSE_CODE]}</ReactSyntaxHighlighter>
+            <ReactSyntaxHighlighter
+              language="text"
+              customStyle={{
+                fontVariantLigatures: "no-contextual",
+              }}
+            >
+              {SAMPLE_MORSE_CODE}
+            </ReactSyntaxHighlighter>
 
             <Typography variant="body1" sx={{ mt: 1 }} gutterBottom>
               (try in any online Morse code editor for more understanding).
