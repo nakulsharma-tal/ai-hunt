@@ -48,19 +48,25 @@ export function Congratulations() {
         />
 
         <CardContent>
-          <Typography variant="h4" gutterBottom>
+          <Typography variant="h5" gutterBottom>
             You have successfully traveled across the country to kill the AI!
           </Typography>
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
             You have completed the mission. Hope you have saved humanity!
           </Typography>
-
-          <Typography variant="h6" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
             Liberators will make sure that you will be rewarded well in the future if you are quick enough to stop the AI.
           </Typography>
 
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+            You can submit a different answer by clicking the button below, if you want to, liberators will consider the latest
+            submission as your final answer.
+          </Typography>
+
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={goBack}>Submit a different answer</Button>
+            <Button onClick={goBack} sx={{ fontSize: "1rem" }}>
+              Submit a different answer
+            </Button>
           </Box>
         </CardContent>
       </Card>

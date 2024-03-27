@@ -3,7 +3,7 @@ import { IQuestion } from "./question.interface";
 export const CROSSWORD_IMAGE_URL =
   "https://talentica-js-saviour-hunt-public-files.s3.ap-south-1.amazonaws.com/Round-2-Crossword.png";
 
-const CODE_SNIPPET_FOR_E_FREQUENCY = `const text = "Lorem ipsum dolor sit amet, consectetur adipiscing
+const CODE_SNIPPET_FOR_E_FREQUENCY = `const text = \`Lorem ipsum dolor sit amet, consectetur adipiscing
   elit. Nam condimentum viverra libero, non vehicula magna dignissim
   eget. Duis eleifend consectetur tortor ac interdum. Donec sem
   sapien, cursus nec lectus a, semper tempus purus. Aliquam sit amet
@@ -13,7 +13,7 @@ const CODE_SNIPPET_FOR_E_FREQUENCY = `const text = "Lorem ipsum dolor sit amet, 
   enim sed massa maximus efficitur. Sed in diam ut augue pharetra
   faucibus eu sed ex. Morbi vel augue ac justo auctor condimentum quis
   eu elit. Ut efficitur tincidunt sodales. Aenean at velit eu justo
-  facilisis euismod. Etiam eleifend elementum ante at aliquet.";
+  facilisis euismod. Etiam eleifend elementum ante at aliquet.\`;
 
 function simple_count(text) {
   const N = 10000;

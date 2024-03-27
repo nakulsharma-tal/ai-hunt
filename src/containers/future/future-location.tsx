@@ -40,10 +40,10 @@ export function FutureLocation() {
           {!revealCrossword && (
             <>
               <Box>
-                <Typography variant="h6">
+                <Typography variant="h5">
                   Great! You have arrived at the correct location. You are one step closer to proving yourself as the messiah.
                 </Typography>
-                <Typography variant="body1" sx={{ mt: 2 }}>
+                <Typography variant="body1" sx={{ mt: 2, fontSize: "1.1rem" }}>
                   You are not seeing anything else here because liberators want to hide themselves from the AI cults. So they
                   concealed their presence with a force field around themselves. They exist right here, but they are not visible
                   to the eye. You need to alter the force field's source code and make them visible.

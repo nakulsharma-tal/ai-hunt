@@ -81,7 +81,7 @@ export function Welcome() {
           />
 
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-            <Button onClick={handleSubmit} disabled={passkey.length !== ROUND_ZERO_PASSKEY_LENGTH}>
+            <Button onClick={handleSubmit} sx={{ mt: 1, fontSize: "1rem" }} disabled={passkey.length !== ROUND_ZERO_PASSKEY_LENGTH}>
               Submit Key
             </Button>
           </Box>

@@ -54,12 +54,12 @@ export function LastStand() {
       >
         <CardContent>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Typography variant="h2" gutterBottom>
+            <Typography variant="h3" gutterBottom>
               The Last Stand
             </Typography>
           </Box>
 
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
             Last Stand! You have identified that AI is using worker thread model of distributed computing to distribute the
             responsibilities and avoid the single point of failure. You got to know that there are overall 5 worker nodes which
             are located at 5 key cities of United States, and there is a secret main node, the location of which is not known to
@@ -68,7 +68,7 @@ export function LastStand() {
             location of main node, it's all done and dusted, you can kill it!
           </Typography>
 
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
             By using JavaScript Proxy mechanism, you have created a Proxy malware, the code, which will just look and function
             exactly like intended from outside, but it is internally running your special code, which is helpful in interpolating
             the main node's location. However, there is only one catch, in a typical JavaScript developer style, you wrote code
@@ -77,23 +77,23 @@ export function LastStand() {
             malware by yourself!
           </Typography>
 
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
             Liberators prepared a Dweller vehicle which they use to travel. After AI took over, most of the travel on road ways
             are abandoned, and only Pod travel in air is considered legal. However, Dwellers which are created by Liberators,
             travel underground, almost goes undetected by any of the drones and AI cults on top of surface. Dwellers' routes
             closely follow the routes of the old US road ways of 2024. Liberators gave you the route maps.
           </Typography>
 
-          <Typography variant="body1" gutterBottom>
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
             You need to create an algorithm which will help you reach all these 5 cities in the most optimal route while not
             emptying your dweller fuel tank, while avoiding the detection from AI cults and drones. You can refuel at the dweller
             fuel stations and get booster chargers from special booster stations which will allow you to travel you at 2x speed.
-            (Fuel stations, Booster Stations, Cult houses and Drone locations are marked on the MAP) Tell us the order in which
-            cities were visited and time taken for the visit
+            (Fuel stations, Booster Stations, Cult houses and Drone locations are marked on the map). Tell us the order in which
+            cities were visited and time taken for the visit.
           </Typography>
 
-          <Typography variant="body1" gutterBottom sx={{ mt: 2, mb: 3 }}>
-            Get your document data from{" "}
+          <Typography variant="body1" gutterBottom sx={{ mt: 2, mb: 2, fontSize: "1.1rem" }}>
+            Get other details and the map data from{" "}
             <Link href={ROUND_THREE_ZIP_URL} underline="always" target="_blank" rel="noreferrer">
               here
             </Link>
@@ -101,9 +101,9 @@ export function LastStand() {
           </Typography>
 
           <Box>
-            <Typography variant="body1" gutterBottom>
-              Once you are done with coding, add your code in a <u>public</u> GitHub repository. Submit your team ID and the link
-              to the GitHub repository URL to complete the mission -
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+              Liberators will need to verify your code. Once you are done with coding, add your code in a <i><b>public</b></i> GitHub
+              repository, submit your team ID and the link to the GitHub repository URL to complete the mission -
             </Typography>
 
             <TextField
@@ -127,7 +127,7 @@ export function LastStand() {
             />
 
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button onClick={handleSubmit} sx={{ mt: 2 }}>
+              <Button onClick={handleSubmit} sx={{ mt: 2, fontSize: "1rem" }}>
                 Submit Password
               </Button>
             </Box>

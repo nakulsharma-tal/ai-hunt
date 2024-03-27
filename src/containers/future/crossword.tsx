@@ -24,11 +24,11 @@ function Question(props: IQuestionProps) {
 
   return (
     <Box sx={{ mb: 2 }}>
-      <Typography variant="body1" sx={{ whiteSpace: "pre-line" }} gutterBottom>
+      <Typography variant="body1" sx={{ whiteSpace: "pre-line", fontSize: "1.1rem" }} gutterBottom>
         <b>{`Q. ${question.position}) `}</b>
         {question.question}
       </Typography>
-      <Typography variant="caption" gutterBottom>
+      <Typography variant="caption" gutterBottom sx={{ fontSize: "0.9rem" }}>
         {question.hint}
       </Typography>
 
@@ -40,7 +40,7 @@ function Question(props: IQuestionProps) {
               width: "80%",
               borderRadius: "8px",
               padding: "24px",
-              fontSize: "1rem",
+              fontSize: "1.1rem",
             }}
           >
             {question.codeSnippet}
@@ -90,9 +90,16 @@ export function Crossword() {
         }}
       >
         <CardContent>
-          <Typography variant="body1" gutterBottom>
-            Find out the passkey, made of the character sequence at highlighted positions {ROUND_TWO_PASSKEY_POSITIONS} in the
-            crossword, to complete the mission.
+          <Box sx={{ display: "flex", justifyContent: "center" }}>
+            <Typography variant="h3" gutterBottom>
+              The Training Puzzle
+            </Typography>
+          </Box>
+
+          <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+            Your mission is to solve the crossword puzzle and find out the passkey to complete the training designed by LOL. The
+            passkey is made of the character sequence at positions {ROUND_TWO_PASSKEY_POSITIONS} (in that order) marked in the
+            crossword.
           </Typography>
 
           <img
@@ -106,7 +113,7 @@ export function Crossword() {
             }}
           />
 
-          <Typography variant="body1" sx={{ mt: 2 }} gutterBottom>
+          <Typography variant="body1" sx={{ mt: 2, fontSize: "1.1rem" }} gutterBottom>
             Click{" "}
             <Link href={CROSSWORD_IMAGE_URL} underline="always" target="_blank" rel="noreferrer">
               here
@@ -115,7 +122,7 @@ export function Crossword() {
           </Typography>
 
           <Box sx={{ mt: 4 }}>
-            <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
+            <Typography variant="h5" gutterBottom sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               Across
               <ArrowForwardIcon />
             </Typography>
@@ -124,8 +131,8 @@ export function Crossword() {
             ))}
           </Box>
 
-          <Box>
-            <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h5" gutterBottom sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               Down
               <ArrowDownwardIcon />
             </Typography>
@@ -135,9 +142,8 @@ export function Crossword() {
           </Box>
 
           <Box sx={{ mt: 4 }}>
-            <Typography variant="body1" sx={{ fontWeight: 700 }} gutterBottom>
-              Passkey is made of the character sequence at highlighted positions {ROUND_TWO_PASSKEY_POSITIONS} in the crossword
-              and it is {ROUND_TWO_PASSKEY_LENGTH} characters long. Enter the crossword key to complete the mission -
+            <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }} gutterBottom>
+              Enter the passkey key to complete your training -
             </Typography>
 
             <TextField
@@ -154,7 +160,7 @@ export function Crossword() {
             />
 
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button onClick={handleSubmit} disabled={passkey.length !== ROUND_TWO_PASSKEY_LENGTH}>
+              <Button onClick={handleSubmit} sx={{ fontSize: "1rem" }} disabled={passkey.length !== ROUND_TWO_PASSKEY_LENGTH}>
                 Submit Passkey
               </Button>
             </Box>

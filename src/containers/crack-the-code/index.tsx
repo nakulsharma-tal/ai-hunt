@@ -35,25 +35,25 @@ export function CrackTheCode() {
       >
         <CardContent>
           <Box sx={{ display: "flex", justifyContent: "center" }}>
-            <Typography variant="h4" gutterBottom>
+            <Typography variant="h3" gutterBottom>
               Welcome to Time Machine!
             </Typography>
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column" }}>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
               You are a brave one! For accepting the mission! And a smart one too for cracking the Prophesy. You have reached the
               location where the time machine is!
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
               Time Machine is already set to correct destination, but you will need a keyword to enter the future.
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
               Liberators wanted to test your puzzle solving knowledge before allowing you into the future, to make sure you are
               the one true Messiah. They sent you an encrypted message, the answer of the encrypted message will give you the
               keyword to enter in the time machine!
             </Typography>
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
               But Oh oh! AI somehow got hold of this encrypted message and messed up with the encryption little bit and made it
               hard to debug! Decrypt the message and find the keyword to enter the future! A true Messiah is more than capable of
               decrypting the messages!
@@ -61,13 +61,14 @@ export function CrackTheCode() {
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", mt: 2 }}>
-            <Typography variant="body1" sx={{ fontWeight: 700 }}>
+            <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }}>
               Encrypted Message:
             </Typography>
             <ReactSyntaxHighlighter
               language="text"
               customStyle={{
                 fontVariantLigatures: "no-contextual",
+                fontSize: "1.1rem"
               }}
             >
               {QUESTION_MORSE_CODE}
@@ -75,15 +76,15 @@ export function CrackTheCode() {
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", mt: 4 }}>
-            <Typography variant="body1" sx={{ fontWeight: 700 }} gutterBottom>
+            <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }} gutterBottom>
               GuideLines:
             </Typography>
 
-            <Typography variant="body1" gutterBottom>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
               It's a morse code with a twist...
             </Typography>
 
-            <Typography variant="body1">
+            <Typography variant="body1" sx={{ fontSize: "1.1rem" }}>
               If you use an online Morse decoder, it will fail to decode the message. For example, if you encode "awesome" and
               "eyesome", their encodings will be the same after removing the spaces:
             </Typography>
@@ -92,18 +93,19 @@ export function CrackTheCode() {
               language="text"
               customStyle={{
                 fontVariantLigatures: "no-contextual",
+                fontSize: "1.1rem"
               }}
             >
               {SAMPLE_MORSE_CODE}
             </ReactSyntaxHighlighter>
 
-            <Typography variant="body1" sx={{ mt: 1 }} gutterBottom>
+            <Typography variant="body1" sx={{ mt: 1, fontSize: "1.1rem" }} gutterBottom>
               (try in any online Morse code editor for more understanding).
             </Typography>
           </Box>
 
           <Box sx={{ display: "flex", flexDirection: "column", mt: 4 }}>
-            <Typography variant="body1" sx={{ fontWeight: 700 }} gutterBottom>
+            <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }} gutterBottom>
               Your task is to find the correct popular phrase from the Morse code message and that will act as the password for
               the{" "}
               <Button
