@@ -8,6 +8,27 @@ import { useVerifySubmissionQuery } from "../../hooks/useVerifySubmissionQuery";
 import { CompetitionRound } from "../../types";
 
 const ROUND_THREE_ZIP_URL = "https://talentica-js-saviour-hunt-public-files.s3.ap-south-1.amazonaws.com/Round-3.zip";
+const CORE_TEAM_MEMBERS: Array<{
+  name: string;
+  github: string;
+}> = [
+  {
+    name: "Mayank Kansal",
+    github: "mayank-kansal15",
+  },
+  {
+    name: "Nakul Sharma",
+    github: "nakulsharma-tal",
+  },
+  {
+    name: "Govind Vijay",
+    github: "govind-vijay-tal",
+  },
+  {
+    name: "Sanny Kumar",
+    github: "sunnykumar43",
+  },
+];
 
 export function LastStand() {
   const [solutionUrl, setSolution] = useState("");
@@ -100,10 +121,45 @@ export function LastStand() {
             .
           </Typography>
 
-          <Box>
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }} gutterBottom>
+              GuideLines:
+            </Typography>
             <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              Liberators will need to verify your code. Once you are done with coding, add your code in a <i><b>public</b></i> GitHub
-              repository, submit your team ID and the link to the GitHub repository URL to complete the mission -
+              - Liberators will need to verify your code. To facilitate this, set up a{" "}
+              <i>
+                <b>private</b>
+              </i>{" "}
+              GitHub repository and upload your code there. Ensure that your code is written in either JavaScript or TypeScript.
+            </Typography>
+
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+              - In the README file, describe what your code accomplishes using simple language.
+            </Typography>
+
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+              - Include a file named "ROUND_3_ANSWER.txt" with your solution in the same repo. This file should contain the output
+              of your code formatted as described in the provided PDF document.
+            </Typography>
+
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+              - Grant access to your private GitHub repository to the following individuals:{" "}
+              <b>
+                {CORE_TEAM_MEMBERS.map((m) => {
+                  return `${m.name} (${m.github})`;
+                }).join(", ")}
+              </b>
+              .
+            </Typography>
+
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+              - Once you have completed these steps, submit the link to your GitHub repository.
+            </Typography>
+          </Box>
+
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+              Submit your team ID and the link to the GitHub repository URL to complete the mission -
             </Typography>
 
             <TextField
@@ -122,12 +178,12 @@ export function LastStand() {
               value={solutionUrl}
               onChange={(e) => setSolution(e.target.value)}
               variant="outlined"
-              sx={{ mt: 2 }}
+              sx={{ mt: 1, mb: 4 }}
               fullWidth
             />
 
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button onClick={handleSubmit} sx={{ mt: 2, fontSize: "1rem" }}>
+              <Button onClick={handleSubmit} sx={{ fontSize: "1rem" }}>
                 Submit Password
               </Button>
             </Box>

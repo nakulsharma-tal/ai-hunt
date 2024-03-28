@@ -52,17 +52,18 @@ function Question(props: IQuestionProps) {
 }
 
 export function Crossword() {
+  const [teamId, setTeamId] = useState("");
   const [passkey, setPasskey] = useState("");
 
   const navigate = useNavigate({ from: AppRoutes.CROSSWORD });
   const { mutateAsync } = useVerifySubmissionQuery(CompetitionRound.Second);
 
   const handleSubmit = useCallback(async () => {
-    await mutateAsync({ passkey, round: CompetitionRound.Second });
+    await mutateAsync({ teamId, passkey, round: CompetitionRound.Second });
     navigate({
       to: AppRoutes.LAST_STAND,
     });
-  }, [mutateAsync, navigate, passkey]);
+  }, [mutateAsync, navigate, passkey, teamId]);
 
   return (
     <Box
@@ -147,6 +148,16 @@ export function Crossword() {
             </Typography>
 
             <TextField
+              id="team-id"
+              label="Team ID"
+              value={teamId}
+              onChange={(e) => setTeamId(e.target.value)}
+              variant="outlined"
+              sx={{ mt: 4 }}
+              fullWidth
+            />
+
+            <TextField
               id="round-2-passkey"
               label="Passkey"
               variant="outlined"
@@ -154,13 +165,18 @@ export function Crossword() {
               onChange={(e) => setPasskey(e.target.value)}
               fullWidth
               sx={{
-                my: 2,
+                mt: 1,
+                mb: 4,
               }}
               inputProps={{ maxLength: ROUND_TWO_PASSKEY_LENGTH }}
             />
 
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button onClick={handleSubmit} sx={{ fontSize: "1rem" }} disabled={passkey.length !== ROUND_TWO_PASSKEY_LENGTH}>
+              <Button
+                onClick={handleSubmit}
+                sx={{ fontSize: "1rem" }}
+                disabled={teamId.length === 0 || passkey.length !== ROUND_TWO_PASSKEY_LENGTH}
+              >
                 Submit Passkey
               </Button>
             </Box>

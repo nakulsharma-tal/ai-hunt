@@ -35,9 +35,16 @@ export enum CompetitionRound {
   Third = "Third",
 }
 
-export interface VerifySubmissionDto {
-  round: CompetitionRound;
-  passkey?: string;
-  solutionUrl?: string;
-  teamId?: string;
+export interface VerifySubmissionDtoForRoundThird {
+  round: CompetitionRound.Third;
+  solutionUrl: string;
+  teamId: string;
 }
+
+export interface VerifySubmissionDtoForRoundZeroFirstAndSecond {
+  round: CompetitionRound.Zero | CompetitionRound.First | CompetitionRound.Second;
+  passkey: string;
+  teamId: string;
+}
+
+export type VerifySubmissionDto = VerifySubmissionDtoForRoundThird | VerifySubmissionDtoForRoundZeroFirstAndSecond;

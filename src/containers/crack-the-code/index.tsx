@@ -68,7 +68,7 @@ export function CrackTheCode() {
               language="text"
               customStyle={{
                 fontVariantLigatures: "no-contextual",
-                fontSize: "1.1rem"
+                fontSize: "1.1rem",
               }}
             >
               {QUESTION_MORSE_CODE}
@@ -81,11 +81,11 @@ export function CrackTheCode() {
             </Typography>
 
             <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              It's a morse code with a twist...
+              - It's a morse code with a twist...
             </Typography>
 
             <Typography variant="body1" sx={{ fontSize: "1.1rem" }}>
-              If you use an online Morse decoder, it will fail to decode the message. For example, if you encode "awesome" and
+              - If you use an online Morse decoder, it will fail to decode the message. For example, if you encode "awesome" and
               "eyesome", their encodings will be the same after removing the spaces:
             </Typography>
 
@@ -93,7 +93,7 @@ export function CrackTheCode() {
               language="text"
               customStyle={{
                 fontVariantLigatures: "no-contextual",
-                fontSize: "1.1rem"
+                fontSize: "1.1rem",
               }}
             >
               {SAMPLE_MORSE_CODE}
