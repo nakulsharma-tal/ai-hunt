@@ -207,6 +207,21 @@ export function LastStand() {
                 </Typography>
               </ListItemText>
             </ListItem>
+
+            <ListItem disableGutters disablePadding>
+              <ListItemIcon>
+                <ArrowForwardIcon />
+              </ListItemIcon>
+              <ListItemText>
+                <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+                  Please{" "}
+                  <i>
+                    <b>DO NOT</b>
+                  </i>{" "}
+                  push any code to the repository after 10PM on 31st March 2024, Sunday. You can get disqualified for the same.
+                </Typography>
+              </ListItemText>
+            </ListItem>
           </Box>
 
           <Box sx={{ mt: 4 }}>
@@ -226,7 +241,7 @@ export function LastStand() {
 
             <TextField
               id="solution-url"
-              label="Public GitHub repository link"
+              label="Private GitHub repository link"
               value={solutionUrl}
               onChange={(e) => setSolution(e.target.value)}
               variant="outlined"
