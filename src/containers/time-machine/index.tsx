@@ -34,7 +34,7 @@ export function TimeMachine() {
         value={teamId}
         onChange={(e) => setTeamId(e.target.value)}
         variant="outlined"
-        sx={{ mt: 4 }}
+        sx={{ mt: 2 }}
         fullWidth
       />
 
@@ -45,7 +45,7 @@ export function TimeMachine() {
         value={passkey}
         onChange={(e) => setPasskey(e.target.value)}
         fullWidth
-        sx={{ mt: 1, mb: 4 }}
+        sx={{ mt: 2, mb: 1 }}
         inputProps={{
           maxLength: ROUND_ONE_PASSKEY_LENGTH,
         }}

@@ -2,3 +2,13 @@ body {
   margin: 0;
   padding: 0;
 }
+
+.MuiListItem-root {
+  align-items: start !important;
+}
+
+.MuiListItemIcon-root {
+  color: black !important;
+  margin-top: 5px;
+  min-width: 35px !important;
+}

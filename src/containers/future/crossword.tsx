@@ -125,7 +125,7 @@ export function Crossword() {
           <Box sx={{ mt: 4 }}>
             <Typography variant="h5" gutterBottom sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               Across
-              <ArrowForwardIcon />
+              <ArrowForwardIcon sx={{ ml: 1 }} />
             </Typography>
             {ACROSS_QUESTIONS.map((question) => (
               <Question key={question.position} question={question} />
@@ -135,7 +135,7 @@ export function Crossword() {
           <Box sx={{ mt: 4 }}>
             <Typography variant="h5" gutterBottom sx={{ display: "flex", alignItems: "center", mb: 2 }}>
               Down
-              <ArrowDownwardIcon />
+              <ArrowDownwardIcon sx={{ ml: 1 }} />
             </Typography>
             {DOWN_QUESTIONS.map((question) => (
               <Question key={question.position} question={question} />
@@ -153,7 +153,7 @@ export function Crossword() {
               value={teamId}
               onChange={(e) => setTeamId(e.target.value)}
               variant="outlined"
-              sx={{ mt: 4 }}
+              sx={{ mt: 2 }}
               fullWidth
             />
 
@@ -165,8 +165,8 @@ export function Crossword() {
               onChange={(e) => setPasskey(e.target.value)}
               fullWidth
               sx={{
-                mt: 1,
-                mb: 4,
+                mt: 2,
+                mb: 1,
               }}
               inputProps={{ maxLength: ROUND_TWO_PASSKEY_LENGTH }}
             />

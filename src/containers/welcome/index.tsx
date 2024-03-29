@@ -84,8 +84,8 @@ export function Welcome() {
             onChange={(e) => setPasskey(e.target.value)}
             fullWidth
             sx={{
-              mt: 1,
-              mb: 4,
+              mt: 2,
+              mb: 1,
             }}
             inputProps={{
               maxLength: ROUND_ZERO_PASSKEY_LENGTH,

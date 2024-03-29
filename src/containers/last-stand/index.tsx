@@ -1,4 +1,17 @@
-import { Box, Button, Card, CardContent, Link, TextField, Typography } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Link,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { useNavigate } from "@tanstack/react-router";
 import { useCallback, useState } from "react";
 
@@ -125,36 +138,75 @@ export function LastStand() {
             <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }} gutterBottom>
               GuideLines:
             </Typography>
-            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              - Liberators will need to verify your code. To facilitate this, set up a{" "}
-              <i>
-                <b>private</b>
-              </i>{" "}
-              GitHub repository and upload your code there. Ensure that your code is written in either JavaScript or TypeScript.
-            </Typography>
 
-            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              - In the README file, describe what your code accomplishes using simple language.
-            </Typography>
+            <List>
+              <ListItem disableGutters disablePadding>
+                <ListItemIcon>
+                  <ArrowForwardIcon />
+                </ListItemIcon>
+                <ListItemText>
+                  <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+                    Liberators will need to verify your code. To facilitate this, set up a{" "}
+                    <i>
+                      <b>private</b>
+                    </i>{" "}
+                    GitHub repository and upload your code there. Ensure that your code is written in either JavaScript or
+                    TypeScript.
+                  </Typography>
+                </ListItemText>
+              </ListItem>
 
-            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              - Include a file named "ROUND_3_ANSWER.txt" with your solution in the same repo. This file should contain the output
-              of your code formatted as described in the provided PDF document.
-            </Typography>
+              <ListItem disableGutters disablePadding>
+                <ListItemIcon>
+                  <ArrowForwardIcon />
+                </ListItemIcon>
+                <ListItemText>
+                  <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+                    In the <code>README</code> file, describe what your code accomplishes using simple language.
+                  </Typography>
+                </ListItemText>
+              </ListItem>
+            </List>
 
-            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              - Grant access to your private GitHub repository to the following individuals:{" "}
-              <b>
-                {CORE_TEAM_MEMBERS.map((m) => {
-                  return `${m.name} (${m.github})`;
-                }).join(", ")}
-              </b>
-              .
-            </Typography>
+            <ListItem disableGutters disablePadding>
+              <ListItemIcon>
+                <ArrowForwardIcon />
+              </ListItemIcon>
+              <ListItemText>
+                <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+                  Include a file named <code>ROUND_3_ANSWER.txt</code> with your solution in the same repo. This file should
+                  contain the output of your code formatted as described in the provided PDF document.
+                </Typography>
+              </ListItemText>
+            </ListItem>
 
-            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              - Once you have completed these steps, submit the link to your GitHub repository.
-            </Typography>
+            <ListItem disableGutters disablePadding>
+              <ListItemIcon>
+                <ArrowForwardIcon />
+              </ListItemIcon>
+              <ListItemText>
+                <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+                  Grant access to your private GitHub repository to the following individuals:{" "}
+                  <b>
+                    {CORE_TEAM_MEMBERS.map((m) => {
+                      return `${m.name} (${m.github})`;
+                    }).join(", ")}
+                  </b>
+                  .
+                </Typography>
+              </ListItemText>
+            </ListItem>
+
+            <ListItem disableGutters disablePadding>
+              <ListItemIcon>
+                <ArrowForwardIcon />
+              </ListItemIcon>
+              <ListItemText>
+                <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+                  Once you have completed these steps, submit the link to your GitHub repository.
+                </Typography>
+              </ListItemText>
+            </ListItem>
           </Box>
 
           <Box sx={{ mt: 4 }}>
@@ -178,12 +230,12 @@ export function LastStand() {
               value={solutionUrl}
               onChange={(e) => setSolution(e.target.value)}
               variant="outlined"
-              sx={{ mt: 1, mb: 4 }}
+              sx={{ mt: 2, mb: 1 }}
               fullWidth
             />
 
             <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
-              <Button onClick={handleSubmit} sx={{ fontSize: "1rem" }}>
+              <Button onClick={handleSubmit} sx={{ fontSize: "1rem" }} disabled={teamId.length === 0 || solutionUrl.length === 0}>
                 Submit Password
               </Button>
             </Box>

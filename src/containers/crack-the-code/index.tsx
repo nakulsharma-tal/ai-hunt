@@ -1,4 +1,5 @@
-import { Box, Button, Card, CardContent, Typography } from "@mui/material";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { Box, Button, Card, CardContent, List, ListItem, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import { useState } from "react";
 import ReactSyntaxHighlighter from "react-syntax-highlighter";
 
@@ -54,9 +55,9 @@ export function CrackTheCode() {
               keyword to enter in the time machine!
             </Typography>
             <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              But Oh oh! AI somehow got hold of this encrypted message and messed up with the encryption little bit and made it
-              hard to debug! Decrypt the message and find the keyword to enter the future! A true Messiah is more than capable of
-              decrypting the messages!
+              <b>But oh oh!</b> AI somehow got hold of this encrypted message and messed up with the encryption little bit and
+              made it hard to debug! Decrypt the message and find the keyword to enter the future! A true Messiah is more than
+              capable of decrypting the messages!
             </Typography>
           </Box>
 
@@ -75,36 +76,54 @@ export function CrackTheCode() {
             </ReactSyntaxHighlighter>
           </Box>
 
-          <Box sx={{ display: "flex", flexDirection: "column", mt: 4 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", mt: 2 }}>
             <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }} gutterBottom>
               GuideLines:
             </Typography>
 
-            <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
-              - It's a morse code with a twist...
-            </Typography>
+            <List>
+              <ListItem disableGutters disablePadding>
+                <ListItemIcon>
+                  <ArrowForwardIcon />
+                </ListItemIcon>
+                <ListItemText>
+                  <Typography variant="body1" gutterBottom sx={{ fontSize: "1.1rem" }}>
+                    It's a morse code with a twist...
+                  </Typography>
+                </ListItemText>
+              </ListItem>
 
-            <Typography variant="body1" sx={{ fontSize: "1.1rem" }}>
-              - If you use an online Morse decoder, it will fail to decode the message. For example, if you encode "awesome" and
-              "eyesome", their encodings will be the same after removing the spaces:
-            </Typography>
+              <ListItem disableGutters disablePadding>
+                <ListItemIcon>
+                  <ArrowForwardIcon />
+                </ListItemIcon>
+                <ListItemText>
+                  <Box>
+                    <Typography variant="body1" sx={{ fontSize: "1.1rem" }}>
+                      If you use an online Morse decoder, it will fail to decode the message. For example, if you encode "awesome"
+                      and "eyesome", their encodings will be the same after removing the spaces:
+                    </Typography>
 
-            <ReactSyntaxHighlighter
-              language="text"
-              customStyle={{
-                fontVariantLigatures: "no-contextual",
-                fontSize: "1.1rem",
-              }}
-            >
-              {SAMPLE_MORSE_CODE}
-            </ReactSyntaxHighlighter>
+                    <ReactSyntaxHighlighter
+                      language="text"
+                      customStyle={{
+                        fontVariantLigatures: "no-contextual",
+                        fontSize: "1.1rem",
+                      }}
+                    >
+                      {SAMPLE_MORSE_CODE}
+                    </ReactSyntaxHighlighter>
 
-            <Typography variant="body1" sx={{ mt: 1, fontSize: "1.1rem" }} gutterBottom>
-              (try in any online Morse code editor for more understanding).
-            </Typography>
+                    <Typography variant="body1" sx={{ fontSize: "1.1rem" }} gutterBottom>
+                      (try in any online Morse code editor for more understanding).
+                    </Typography>
+                  </Box>
+                </ListItemText>
+              </ListItem>
+            </List>
           </Box>
 
-          <Box sx={{ display: "flex", flexDirection: "column", mt: 4 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", mt: 2 }}>
             <Typography variant="body1" sx={{ fontWeight: 700, fontSize: "1.1rem" }} gutterBottom>
               Your task is to find the correct popular phrase from the Morse code message and that will act as the password for
               the{" "}
@@ -114,7 +133,7 @@ export function CrackTheCode() {
                 sx={{
                   fontSize: "inherit",
                   p: 0,
-                  pb: "5px",
+                  pb: "2px",
                   "&.MuiButtonBase-root:hover": {
                     bgcolor: "transparent",
                     textDecoration: "underline",
